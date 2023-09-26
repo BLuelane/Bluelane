@@ -594,6 +594,19 @@ Enjoy comfortable travel by robust and comfortable 4X4 Safari Toyota Landcruiser
 		downIcons[slideBucket].classList.add("active");
 	});
 
+	var playSlider;
+	var repeater = () => { playslider = setInterval(function(){
+		imageSlider.forEach((slide) => {slide.classList.remove("active");});
+		downIcons.forEach((icons)=>{icons.classList.remove("active");});
+		
+		slideBucket++;
+		if(slideBucket > (imageNumber -1)) {slideBucket = 0;}
+		imageSlider[slideBucket].classList.add("active");
+		downIcons[slideBucket].classList.add("active");
+	});
+		
+	},10000);
+			     }
 
 </script>
 
