@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/
+	font-awesome/5.15.3/css/all.min.css">
+	<title>imageslider</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;box-sizing: border-box;}
+
+		body{
+			display: flex;
+			justify-content: center;
+			height: 100vh;
+			background-color: green;}
+
+		.slideContainer{
+			overflow: hidden;
+			position: relative; 
+			width: 50%;
+			background-color: white;
+			border-radius: 10px;}
+
+		.slideContainer .subContainer{
+			position: absolute;
+			width: 100%;
+			height: 100%; 
+			clip-path: circle(0% at 0 50%);}
+
+		.slideContainer .subContainer.active{
+		 clip-path:circle(150% at 0 50%); 
+		 transition: 2s;}
+
+		.slideContainer .subContainer img{
+			position: absolute; 
+			width: 100%;
+			height: 100%;
+			object-fit: cover;}
+
+		.slideContainer .subContainer .containerInfo{
+			position: absolute; 
+			padding: 20px;
+			background-color: white;
+			opacity: .8;
+			border-radius: 10px;
+			width: 75%;
+			margin-top: 50px;
+			margin-left: 50px;}
+
+		.navContainer{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 500px; opacity: 0;}
+		.slideContainer:hover .navContainer{opacity: 1;transition: 2s ease;}
+
+		.prev-btn, .next-btn{
+			z-index: 999;
+			font-size: 1.2rem;
+			background-color: white;
+			color: black;
+			cursor: pointer;padding: 5px;}
+
+		.prev-btn{border-top-right-radius: 3px;}
+		.prev-btn{border-bottom-right-radius: 3px;}
+		.next-btn{border-top-left-radius: 3px;}
+		.next-btn{border-bottom-left-radius: 3px;}
+
+		.downNavigation{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: -5%;
+		}
+		.downNavigation .downIcon{
+			width: 20px; 
+			height: 10px; 
+			z-index: 9999; 
+			background-color:ghostwhite;
+			margin: 0.8px;
+			border-radius: 3px;}
+		.downNavigation .downIcon.active{background-color: red;}
+	</style>
+</head>
+<body>
+	<div class="slideContainer">
+		<div class="subContainer active">
+			<img src="apes.jpg" alt="">
+			<div class="containerInfo">
+				<h1>sliding-images</h1>
+				<p>anniversary celebrations</p>
+			</div>
+		</div>
+
+		<div class="subContainer">
+			<img src="c1.jpg" alt="">
+			<div class="containerInfo">
+				<h1>sliding-images</h1>
+				<p>anniversary celebrations</p>
+			</div>
+		</div>
+         
+        <div class="subContainer">
+			<img src="hot.jpg" alt="">
+			<div class="containerInfo">
+				<h1>sliding-images</h1>
+				<p>anniversary celebrations</p>
+			</div>
+		</div>
+
+		<div class="subContainer">
+			<img src="hot1.jpg" alt="">
+			<div class="containerInfo">
+				<h1>sliding-images</h1>
+				<p>anniversary celebrations</p>
+			</div>
+		</div>
+
+		<div class="subContainer">
+			<img src="hotel7.jpg" alt="">
+			<div class="containerInfo">
+				<h1>sliding-images</h1>
+				<p>anniversary celebrations</p>
+			</div>
+		</div>
+
+		<div class="navContainer">
+			<i class="fas fa-angle-left prev-btn"></i>
+			<i class="fas fa-angle-right next-btn"></i>
+		</div>
+
+		<div class="downNavigation">
+			<div class="downIcon active"></div>
+			<div class="downIcon"></div>
+			<div class="downIcon"></div>
+			<div class="downIcon"></div>
+			<div class="downIcon"></div>
+		</div>
+	</div>
+  <script type="text/javascript">
+  	let prevBtn = document.querySelector(".prev-btn");
+  	let nextBtn = document.querySelector(".next-btn");
+  	let imageContainer = document.querySelectorAll(".subContainer");
+  	let iconBtn = document.querySelectorAll(".downIcon");
+  	let numberOfImages = imageContainer.length;
+  	var slideNumber = 0;
+
+  	nextBtn.addEventListener("click", () => {
+  		imageContainer.forEach((subContainer)=>{ subContainer.classList.remove("active")});
+  		iconBtn.forEach((downIcon)=>{ downIcon.classList.remove("active")});
+  		slideNumber++;
+  		if(slideNumber > (numberOfImages)) {slideNumber = 1}
+
+  		imageContainer[slideNumber].classList.add("active");
+  	    iconBtn[slideNumber].classList.add("active");
+  	});
+
+  	prevBtn.addEventListener("click", () => {
+  		imageContainer.forEach((subContainer)=>{ subContainer.classList.remove("active")});
+  		iconBtn.forEach((downIcon)=>{ downIcon.classList.remove("active")});
+  		slideNumber--;
+  		if(slideNumber < 0 ) {slideNumber = numberOfImages -1}
+
+  		imageContainer[slideNumber].classList.add("active");
+  	    iconBtn[slideNumber].classList.add("active");
+  	});
+  </script>
+</body>
+</html>
